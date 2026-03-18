@@ -77,7 +77,7 @@ void loop() {
     Serial.print(F("Type: "));
     Serial.println(type);
     Serial.print(F("Sensor: "));
-    Serial.println(sensorState ? "CLOSED" : "OPEN");
+    Serial.println(sensorState ? "CLOSED (OK)" : "OPEN (CUT)");
     Serial.print(F("Battery: "));
     Serial.print(battVoltage);
     Serial.println("V");
@@ -86,7 +86,7 @@ void loop() {
     digitalWrite(OUTPUT_RELAY_PIN, sensorState ? HIGH : LOW);
 
     // Handle Low Battery Alert
-    if (type == 2 || battVoltage < 7.0) {
+    if (type == 2 || battVoltage < 2.5) {
       digitalWrite(LOW_BATT_PIN, HIGH);
     } else {
       digitalWrite(LOW_BATT_PIN, LOW);
